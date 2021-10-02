@@ -67,10 +67,8 @@ namespace Basket.API.Controllers
 
             if ( basket == null ) return BadRequest();
 
-            //var basketCheckoutEvent = new BasketCheckoutEvent() { TotalPrice = basket.TotalPrice };
-
-            var eventMessage = _mapper.Map<BasketCheckoutEvent>( basket );// basketCheckout );
-            //eventMessage.TotalPrice = basket.TotalPrice;
+            var eventMessage = _mapper.Map<BasketCheckoutEvent>( basketCheckout );
+            eventMessage.TotalPrice = basket.TotalPrice;
             await _publishEndpoint.Publish( eventMessage );
 
             await _repository.DeleteBasket( basket.UserName );
