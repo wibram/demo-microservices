@@ -24,10 +24,6 @@ namespace Shopping.Aggregator
             services.AddHttpClient<IBasketService, BasketService>( c => c.BaseAddress = new System.Uri( Configuration["ApiSettings:BasketUrl"] ) );
             services.AddHttpClient<IOrderService, OrderService>( c => c.BaseAddress = new System.Uri( Configuration["ApiSettings:OrderingUrl"] ) );
 
-            services.AddScoped<ICatalogService, CatalogService>();
-            services.AddScoped<IBasketService, BasketService>();
-            services.AddScoped<IOrderService, OrderService>();
-
             services.AddControllers();
             services.AddSwaggerGen( c =>
              {
